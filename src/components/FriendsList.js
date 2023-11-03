@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Logout from './Logout';
+
+
 
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
@@ -28,6 +31,7 @@ const FriendsList = () => {
   return (
     <div>
       <h2>Friends List</h2>
+      <Logout />
       {loading ? (
         <p>Loading friends...</p>
       ) : (

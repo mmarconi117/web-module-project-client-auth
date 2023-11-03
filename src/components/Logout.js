@@ -6,6 +6,9 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
+    // Redirect the user to the login page or any other appropriate page.
+    window.location.href = '/login';
     // Make a POST request to the logout endpoint
     axios
       .post('http://localhost:9000/api/logout', {}, {

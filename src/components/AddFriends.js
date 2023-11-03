@@ -17,6 +17,7 @@ const AddFriends = () => {
     });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,6 +38,7 @@ const AddFriends = () => {
         // Handle the error, show an error message, etc.
       });
   };
+
 
   return (
     <div>
