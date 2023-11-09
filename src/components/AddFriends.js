@@ -42,6 +42,19 @@ const AddFriends = () => {
 
   return (
     <div>
+        <div>
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" />
+        </div>
+        <div>
+            <label htmlFor="age">Age:</label>
+            <input type="number" id="age" name="age" />
+        </div>
+        <div>
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" />
+
+        </div>
       <h2>Add Friend</h2>
       <form onSubmit={handleSubmit}>
         {/* ... your form inputs ... */}

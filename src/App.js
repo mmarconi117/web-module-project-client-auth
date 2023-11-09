@@ -1,22 +1,23 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import FriendsList from './components/FriendsList';
-import AddFriends from './components/AddFriends';
-import Logout from './components/Logout';
-import { axiosWithAuth } from './util/axiosWithAuth';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import FriendsList from "./components/FriendsList";
+import AddFriends from "./components/AddFriends";
+import Logout from "./components/Logout";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
-      <Router> {/* This is your top-level Router */}
+      <Router>
         <h2>Client Auth Project</h2>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/friends" element={<FriendsList />} />
-          <Route path="/friends/add" element={<AddFriends />} />
+          {/* Use PrivateRoute for protected routes */}
+          <PrivateRoute path="/friends" element={<FriendsList />} />
+          <PrivateRoute path="/friends/add" element={<AddFriends />} />
           <Route path="/logout" element={<Logout />} />
+          {/* Redirect to login for unknown routes */}
           <Route path="/*" element={<Login />} />
         </Routes>
       </Router>
