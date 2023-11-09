@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import { useNavigate } from 'react-router-dom';
 
 const AddFriends = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +8,7 @@ const AddFriends = () => {
     age: '',
     email: '',
   });
-  const navigate = useNavigate(); // Use useNavigate to access navigation
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -17,47 +17,57 @@ const AddFriends = () => {
     });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Make a POST request to the API to add a new friend
     axios
       .post('http://localhost:9000/api/friends', formData, {
         headers: {
-          // Add your authentication token here
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
       .then(() => {
-        // Redirect to the FriendsList route after successfully adding a friend
-        navigate('/friends'); // Use navigate function instead of history
+        navigate('/friends');
       })
       .catch((error) => {
         console.error('Error adding friend:', error);
-        // Handle the error, show an error message, etc.
       });
   };
 
-
   return (
     <div>
-        <div>
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" />
-        </div>
-        <div>
-            <label htmlFor="age">Age:</label>
-            <input type="number" id="age" name="age" />
-        </div>
-        <div>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" />
-
-        </div>
       <h2>Add Friend</h2>
       <form onSubmit={handleSubmit}>
-        {/* ... your form inputs ... */}
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            value={formData.age}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">Add Friend</button>
       </form>
     </div>

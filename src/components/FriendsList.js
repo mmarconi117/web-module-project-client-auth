@@ -5,14 +5,18 @@ import Logout from './Logout';
 import { axiosWithAuth } from "../util/axiosWithAuth";
 
 
+
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
 
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const response = await axiosWithAuth().get("/friends");
-        setFriends(response.data);
+        const response = await axiosWithAuth().get("/friends")
+        .then(resp =>{
+          console.log(resp)
+          setFriends(resp.data);
+        })
       } catch (error) {
         console.error("Error fetching friends:", error);
       }
